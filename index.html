@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OOP Lab — Learn Object-Oriented Programming Visually</title>
+  <meta name="description" content="An interactive visual learning platform that teaches the four pillars of Object-Oriented Programming — encapsulation, inheritance, polymorphism and abstraction — using real-life examples." />
+  <meta name="color-scheme" content="light" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%234F46E5'/%3E%3Ccircle cx='11' cy='11' r='3' fill='%23fff'/%3E%3Ccircle cx='21' cy='11' r='3' fill='%23A5B4FC'/%3E%3Ccircle cx='11' cy='21' r='3' fill='%2367E8F9'/%3E%3Ccircle cx='21' cy='21' r='3' fill='%23fff' opacity='.55'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+  <a class="skip-link" href="#app">Skip to content</a>
+
+  <div class="scrim" id="scrim"></div>
+
+  <div class="app" id="appShell">
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="sidebar__top">
+        <a class="brand" href="#/dashboard" aria-label="OOP Lab home">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="26" height="26" fill="none">
+              <circle cx="10" cy="10" r="3.1" fill="#fff" />
+              <circle cx="22" cy="10" r="3.1" fill="#A5B4FC" />
+              <circle cx="10" cy="22" r="3.1" fill="#67E8F9" />
+              <circle cx="22" cy="22" r="3.1" fill="#fff" opacity=".6" />
+              <path d="M13.1 10h5.8M10 13.1v5.8M22 13.1v5.8M13.1 22h5.8" stroke="#fff" stroke-opacity=".45" stroke-width="1.3" />
+            </svg>
+          </span>
+          <span class="brand__text">
+            <strong>OOP Lab</strong>
+            <small>Visual learning</small>
+          </span>
+        </a>
+        <button class="icon-btn sidebar__collapse" id="collapseBtn" type="button"
+                aria-label="Collapse sidebar" aria-expanded="true" title="Collapse sidebar">
+          <span class="ico" data-icon="panel-left"></span>
+        </button>
+      </div>
+
+      <nav class="sidebar__nav">
+        <p class="nav-group">Workspace</p>
+        <a class="nav-link" href="#/dashboard" data-nav="dashboard">
+          <span class="nav-ico"><span class="ico" data-icon="dashboard"></span></span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        <a class="nav-link" href="#/about" data-nav="about">
+          <span class="nav-ico"><span class="ico" data-icon="compass"></span></span>
+          <span class="nav-label">How it works</span>
+        </a>
+
+        <p class="nav-group">The four pillars</p>
+        <a class="nav-link" href="#/encapsulation" data-nav="encapsulation">
+          <span class="nav-ico nav-ico--cyan"><span class="ico" data-icon="lock"></span></span>
+          <span class="nav-label">Encapsulation</span>
+          <span class="nav-check" data-navcheck="encapsulation" aria-hidden="true"></span>
+        </a>
+        <a class="nav-link" href="#/inheritance" data-nav="inheritance">
+          <span class="nav-ico nav-ico--violet"><span class="ico" data-icon="git-branch"></span></span>
+          <span class="nav-label">Inheritance</span>
+          <span class="nav-check" data-navcheck="inheritance" aria-hidden="true"></span>
+        </a>
+        <a class="nav-link" href="#/polymorphism" data-nav="polymorphism">
+          <span class="nav-ico nav-ico--amber"><span class="ico" data-icon="waves"></span></span>
+          <span class="nav-label">Polymorphism</span>
+          <span class="nav-check" data-navcheck="polymorphism" aria-hidden="true"></span>
+        </a>
+        <a class="nav-link" href="#/abstraction" data-nav="abstraction">
+          <span class="nav-ico nav-ico--emerald"><span class="ico" data-icon="car"></span></span>
+          <span class="nav-label">Abstraction</span>
+          <span class="nav-check" data-navcheck="abstraction" aria-hidden="true"></span>
+        </a>
+
+        <p class="nav-group">Practice</p>
+        <a class="nav-link" href="#/quiz" data-nav="quiz">
+          <span class="nav-ico nav-ico--indigo"><span class="ico" data-icon="quiz"></span></span>
+          <span class="nav-label">Quiz</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__foot">
+        <div class="mini-progress">
+          <div class="mini-progress__top">
+            <span>Your progress</span>
+            <b id="sideProgress">0 / 4</b>
+          </div>
+          <div class="bar"><span id="sideBar" style="width:0%"></span></div>
+          <p class="mini-progress__note" id="sideNote">Start with encapsulation</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn topbar__menu" id="menuBtn" type="button"
+                aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+          <span class="ico" data-icon="menu"></span>
+        </button>
+
+        <nav class="crumbs" id="crumbs" aria-label="Breadcrumb">
+          <a href="#/dashboard">OOP Lab</a>
+          <span class="crumbs__sep" aria-hidden="true">/</span>
+          <span class="crumbs__now" aria-current="page">Dashboard</span>
+        </nav>
+
+        <div class="topbar__right">
+          <span class="pill pill--progress" title="Pillars completed">
+            <span class="pill__dot" aria-hidden="true"></span>
+            <span id="topProgress">0 of 4 complete</span>
+          </span>
+          <a class="btn btn--ghost btn--sm" href="#/quiz">
+            <span class="ico" data-icon="quiz"></span>
+            <span>Quiz</span>
+          </a>
+        </div>
+      </header>
+
+      <main class="page" id="app" tabindex="-1"></main>
+
+      <footer class="site-foot">
+        <p><strong>OOP Lab</strong> — four ideas, four machines, one mental model.</p>
+        <p class="site-foot__hint">Tip: use <kbd>←</kbd> <kbd>→</kbd> inside a demo to move between steps.</p>
+      </footer>
+    </div>
+  </div>
+
+  <div class="toast-host" id="toastHost" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/encapsulation.js"></script>
+  <script src="js/inheritance.js"></script>
+  <script src="js/polymorphism.js"></script>
+  <script src="js/abstraction.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/about.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+/* ==========================================================================
+   OOP Lab — keyframes and motion helpers
+   Every animation here carries meaning: arrival, transfer, feedback, or state.
+   ========================================================================== */
+
+@keyframes viewIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.82);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastOut {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+}
+
+@keyframes chipPop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slotFlash {
+  0%,
+  100% {
+    background: #cfd9e7;
+  }
+  40% {
+    background: #fef3c7;
+    border-color: #fbbf24;
+  }
+}
+
+@keyframes soundBar {
+  0% {
+    height: 4px;
+  }
+  100% {
+    height: 16px;
+  }
+}
+
+@keyframes consoleIn {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes echoRing {
+  0% {
+    opacity: 0.55;
+    transform: translate(-50%, 0) scale(0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(1.75);
+  }
+}
+
+@keyframes roadMove {
+  from {
+    transform: translateY(-50%) translateX(0);
+  }
+  to {
+    transform: translateY(-50%) translateX(-52px);
+  }
+}
+
+@keyframes pistonFire {
+  from {
+    top: 0;
+  }
+  to {
+    top: 26px;
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes shieldPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(8, 145, 178, 0.32);
+  }
+  50% {
+    box-shadow: 0 0 0 9px rgba(8, 145, 178, 0);
+  }
+}
+
+@keyframes shakeX {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-6px);
+  }
+  30% {
+    transform: translateX(5px);
+  }
+  45% {
+    transform: translateX(-4px);
+  }
+  60% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+}
+
+@keyframes flashRed {
+  0%,
+  100% {
+    box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.55), 0 0 0 3px #cdd7e5;
+  }
+  40% {
+    box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.55), 0 0 0 3px #f87171;
+  }
+}
+
+@keyframes glowSuccess {
+  0%,
+  100% {
+    box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.55), 0 0 0 3px #cdd7e5;
+  }
+  40% {
+    box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.55), 0 0 0 3px #34d399;
+  }
+}
+
+@keyframes needleIdle {
+  from {
+    transform: rotate(-120deg);
+  }
+  to {
+    transform: rotate(-138deg);
+  }
+}
+
+@keyframes sheen {
+  from {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+@keyframes blinkSoft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ---------- Motion utilities ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.reveal.is-in {
+  animation: viewIn 0.55s var(--ease-out) forwards;
+}
+
+.anim-shake {
+  animation: shakeX 0.5s var(--ease);
+}
+
+.anim-flash-bad .atm__screen {
+  animation: flashRed 0.6s var(--ease);
+}
+
+.anim-flash-good .atm__screen {
+  animation: glowSuccess 0.8s var(--ease);
+}
+
+.anim-float {
+  animation: floaty 4.5s var(--ease) infinite;
+}
+
+.anim-blink {
+  animation: blinkSoft 1.8s var(--ease) infinite;
+}
+
+/* The "cash generated" sheen on buttons of the ATM */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  bottom: -40%;
+  left: 0;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: translateX(-120%) skewX(-18deg);
+  pointer-events: none;
+}
+
+.btn-sheen:hover::after {
+  animation: sheen 0.7s var(--ease);
+}
+
+/* Draw-on for SVG process lines */
+.draw-in {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  transition: stroke-dashoffset 0.9s var(--ease-out);
+}
+
+.draw-in.is-drawn {
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
